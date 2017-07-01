@@ -1,0 +1,35 @@
+---
+# tasks file for MicroJoe.dokuwiki
+- name: Make sure Dokuwiki group exists
+  group:
+    name: "{{ dokuwiki_group }}"
+
+- name: Make sure dokuwiki user exists
+  user:
+    name: "{{ dokuwiki_user }}"
+    group: "{{ dokuwiki_group }}"
+
+- name: Make sure dokuwiki base directory exists
+  file:
+    path: "{{ dokuwiki_base }}"
+    state: directory
+
+- name: Download and extract dokuwiki
+  unarchive:
+    src: "{{ dokuwiki_source }}"
+    dest: "{{ dokuwiki_base }}"
+    remote_src: true
+    extra_opts: ["--strip-components=1"]
+    group: "{{ dokuwiki_group }}"
+    owner: "{{ dokuwiki_user }}"
+    mode: u=rwX,g=rwX,o=rX
+  args:
+    creates: "{{ dokuwiki_base }}/index.php"
+
+- name: Install nginx configuration file {{ nginx_filename }}
+  template:
+    src: templates/nginx.j2
+    dest: /etc/nginx/sites-available/{{ nginx_filename }}
+    owner: root
+    group: root
+  notify: restart nginx

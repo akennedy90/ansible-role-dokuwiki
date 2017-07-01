@@ -1,0 +1,17 @@
+---
+# defaults file for MicroJoe.dokuwiki
+dokuwiki_source: https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
+dokuwiki_install: true
+
+dokuwiki_base: /var/www/dokuwiki
+
+dokuwiki_group: www-data
+dokuwiki_user: dokuwiki
+
+nginx_server_name: dokuwiki.localhost
+nginx_filename: dokuwiki-{{ nginx_server_name }}
+
+letsencrypt_wellknown: /var/www/letsencrypt
+letsencrypt_activate: false
+letsencrypt_https: false
+letsencrypt_domain: "{{ nginx_server_name }}"
