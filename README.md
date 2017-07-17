@@ -1,6 +1,8 @@
 Dokuwiki
 ========
 
+[![Build Status](https://travis-ci.org/MicroJoe/ansible-role-dokuwiki.svg?branch=master)](https://travis-ci.org/MicroJoe/ansible-role-dokuwiki)
+
 A role that installs Dokuwiki for an nginx/letsencrypt setup.
 
 Requirements
