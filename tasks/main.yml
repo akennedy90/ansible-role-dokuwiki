@@ -23,8 +23,8 @@
     group: "{{ dokuwiki_group }}"
     owner: "{{ dokuwiki_user }}"
     mode: u=rwX,g=rwX,o=rX
-  args:
-    creates: "{{ dokuwiki_base }}/index.php"
+# args:
+#   creates: "{{ dokuwiki_base }}/index.php"
 
 - name: Install nginx configuration file {{ nginx_filename }}
   template:
