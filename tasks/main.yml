@@ -1,5 +1,12 @@
 ---
-# tasks file for MicroJoe.dokuwiki
+- name: Install required packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - php7.0-fpm
+    - php7.0-xml
+
 - name: Make sure Dokuwiki group exists
   group:
     name: "{{ dokuwiki_group }}"
@@ -32,4 +39,11 @@
     dest: /etc/nginx/sites-available/{{ nginx_filename }}
     owner: root
     group: root
+
+- name: Enable nginx site {{ nginx_filename }}
+  file:
+    src: /etc/nginx/sites-available/{{ nginx_filename }}
+    path: /etc/nginx/sites-enabled/{{ nginx_filename }}
+    state: link
   notify: restart nginx
+  when: nginx_enable_site

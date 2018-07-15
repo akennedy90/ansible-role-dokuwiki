@@ -10,6 +10,7 @@ dokuwiki_user: dokuwiki
 
 nginx_server_name: dokuwiki.localhost
 nginx_filename: dokuwiki-{{ nginx_server_name }}
+nginx_enable_site: true
 
 letsencrypt_wellknown: /var/www/letsencrypt
 letsencrypt_activate: false
